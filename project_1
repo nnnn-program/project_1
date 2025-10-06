@@ -1,0 +1,90 @@
+#include <stdio.h>
+
+void shape1() {
+    int i, j;
+    for(i=1; i<=5; i++) {
+        for(j=1; j<=i; j++) {
+            printf("* ");
+        }
+        printf("\n");
+    }
+}
+
+void shape2() {
+    int i, j;
+    for(i=5; i>=1; i--) {
+        for(j=1; j<=i; j++) {
+            printf("* ");
+        }
+        printf("\n");
+    }
+}
+
+void fibonacci(int n) {
+    int a=0, b=1, next, i;
+    printf("Fibonacci Series: ");
+    for(i=1; i<=n; i++) {
+        printf("%d ", a);
+        next = a + b;
+        a = b;
+        b = next;
+    }
+    printf("\n");
+}
+
+void pascal(int n) {
+    int coef = 1, space, i, j;
+    for(i=0; i<n; i++) {
+        for(space=1; space<=n-i; space++)
+            printf("  ");
+        for(j=0; j<=i; j++) {
+            if (j==0 || i==0)
+                coef = 1;
+            else
+                coef = coef*(i-j+1)/j;
+            printf("%4d", coef);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice, n;
+
+    do {
+        printf("\nMAIN MENU\n");
+        printf("1. SHAPE 1\n");
+        printf("2. SHAPE 2\n");
+        printf("3. FIBONACCI SERIES\n");
+        printf("4. PASCAL'S TRIANGLE\n");
+        printf("5. EXIT\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                shape1();
+                break;
+            case 2:
+                shape2();
+                break;
+            case 3:
+                printf("Enter number of terms: ");
+                scanf("%d", &n);
+                fibonacci(n);
+                break;
+            case 4:
+                printf("Enter number of rows: ");
+                scanf("%d", &n);
+                pascal(n);
+                break;
+            case 5:
+                printf("Exiting program...\n");
+                break;
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+    } while(choice != 5);
+
+    return 0;
+}
